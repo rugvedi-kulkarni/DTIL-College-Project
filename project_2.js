@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
         // SENDING DATA TO BACKEND
-        const response = await fetch("http://localhost:3000/api/book", {
+        const response = await fetch("/api/book", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(appointmentData)
@@ -56,7 +56,7 @@ async function fetchAppointments() {
     if (!tableBody) return;
 
     try {
-        const response = await fetch("http://localhost:3000/api/appointments");
+        const response = await fetch("/api/appointments");
         const data = await response.json();
 
         if (!response.ok || !Array.isArray(data)) {
