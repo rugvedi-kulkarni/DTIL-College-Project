@@ -4,7 +4,9 @@ const connectDB = require("./db");
 const appointmentRoutes = require("./routes/appointmentRoutes");
 
 const app = express();
-const PORT = 3000;
+
+// 1. UPDATE: Use Render's port if available, otherwise use 3000 for local testing
+const PORT = process.env.PORT || 3000;
 
 connectDB();
 
@@ -13,6 +15,7 @@ app.use(express.json());
 
 app.use("/api", appointmentRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+// 2. UPDATE: Listen on '0.0.0.0' so Render can access the server
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
