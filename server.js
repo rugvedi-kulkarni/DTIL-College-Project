@@ -13,6 +13,7 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+app.use(express.static(__dirname));
 app.use("/api", appointmentRoutes);
 
 // 2. UPDATE: Listen on '0.0.0.0' so Render can access the server
