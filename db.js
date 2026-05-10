@@ -1,16 +1,14 @@
 const mongoose = require("mongoose");
 
-const DEFAULT_LOCAL_URI = "mongodb://127.0.0.1:27017/hospital_db";
+const MONGO_URI = "mongodb://127.0.0.1:27017/hospital_db";
 
 async function connectDB() {
-  const mongoUri = process.env.MONGODB_URI || DEFAULT_LOCAL_URI;
-
   try {
-    await mongoose.connect(mongoUri);
-    console.log("MongoDB connected successfully");
+    await mongoose.connect(MONGO_URI);
+    console.log("MongoDB connected: hospital_db");
   } catch (error) {
-    console.error("MongoDB connection failed:", error.message);
-    throw error;
+    console.error("MongoDB connection failed. Is MongoDB running?", error.message);
+    process.exit(1);
   }
 }
 
